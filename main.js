@@ -100,11 +100,11 @@ document.addEventListener("DOMContentLoaded", function() {
         postHeader.innerHTML = `
             <div class="post-meta">
                 <div class="post-meta__icon">
-                    <img class="profile-pic" src="${post.author.image || 'https://via.placeholder.com/300'}" alt="${post.author.name}">
+                    ${post.author.image ? `<img class="profile-pic" src="${post.author.image}" alt="${post.author.name}">` : `<div class="profile-pic-default">${getInitials(post.author.name)}</div>`}
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${post.author.name}</div>
-                    <div class="post-meta__time">4 mesi fa</div>
+                    <div class="post-meta__time">${formatDate(post.created)}</div>
                 </div>
             </div>
         `;
@@ -156,6 +156,20 @@ document.addEventListener("DOMContentLoaded", function() {
             const currentLikes = parseInt(likeCounter.textContent);
             likeCounter.textContent = currentLikes + increment;
         });
+    }
+
+    // Funzione per ottenere le iniziali di un nome
+    function getInitials(name) {
+        return name.split(' ').map(word => word.charAt(0)).join('').toUpperCase();
+    }
+
+    // Funzione per formattare la data nel formato italiano (gg/mm/aaaa)
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
     }
 
     // Genera i post nel feed
