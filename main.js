@@ -100,7 +100,10 @@ document.addEventListener("DOMContentLoaded", function() {
         postHeader.innerHTML = `
             <div class="post-meta">
                 <div class="post-meta__icon">
-                    ${post.author.image ? `<img class="profile-pic" src="${post.author.image}" alt="${post.author.name}">` : `<div class="profile-pic-default">${getInitials(post.author.name)}</div>`}
+                    ${post.author.image ? `<img class="profile-pic" 
+                    src="${post.author.image}" alt="${post.author.name}">` : 
+                    `<div class="profile-pic-default">${getInitials(post.author.name)}
+                    </div>`}
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${post.author.name}</div>
@@ -127,12 +130,15 @@ document.addEventListener("DOMContentLoaded", function() {
         postFooter.innerHTML = `
             <div class="likes">
                 <div class="likes__cta">
-                    <a class="like-button js-like-button" href="#" data-postid="${post.id}">
-                        <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                    <a class="like-button js-like-button" href="#" 
+                    data-postid="${post.id}">
+                        <i class="like-button__icon fas fa-thumbs-up" 
+                        aria-hidden="true"></i>
                         <span class="like-button__label">Mi Piace</span>
                     </a>
                 </div>
-                <div class="likes__counter">Piace a <b id="like-counter-${post.id}" class="js-likes-counter">${post.likes}</b> persone</div>
+                <div class="likes__counter">Piace a <b id="like-counter-${post.id}" 
+                class="js-likes-counter">${post.likes}</b> persone</div>
             </div>
         `;
 
@@ -160,7 +166,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Funzione per ottenere le iniziali di un nome
     function getInitials(name) {
-        const initials = name.split(' ').map(word => word.charAt(0)).join('').toUpperCase();
+        const initials = name.split(' ').map(word => 
+            word.charAt(0)).join('').toUpperCase();
         return initials.length > 1 ? initials.slice(0, 2) : initials;
     }
 
@@ -176,5 +183,3 @@ document.addEventListener("DOMContentLoaded", function() {
     // Genera i post nel feed
     posts.forEach(generatePost);
 });
-
-
