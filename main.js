@@ -160,7 +160,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Funzione per ottenere le iniziali di un nome
     function getInitials(name) {
-        return name.split(' ').map(word => word.charAt(0)).join('').toUpperCase();
+        const initials = name.split(' ').map(word => word.charAt(0)).join('').toUpperCase();
+        return initials.length > 1 ? initials.slice(0, 2) : initials;
     }
 
     // Funzione per formattare la data nel formato italiano (gg/mm/aaaa)
@@ -175,3 +176,5 @@ document.addEventListener("DOMContentLoaded", function() {
     // Genera i post nel feed
     posts.forEach(generatePost);
 });
+
+
